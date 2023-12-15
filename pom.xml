@@ -4,6 +4,8 @@
 	<artifactId>cryptor-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<packaging>maven-plugin</packaging>
+	<name>cryptor-maven-plugin</name>
+	<description>A configuration file encryption and decryption plugin</description>
 
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
