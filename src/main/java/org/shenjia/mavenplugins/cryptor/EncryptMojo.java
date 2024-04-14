@@ -53,7 +53,35 @@ public class EncryptMojo extends AbstractMojo {
     @Parameter(readonly = true, required = true)
     private String aesSecretSalt;
 
-    public void execute() throws MojoExecutionException, MojoFailureException {
+    public void setSource(File source) {
+		this.source = source;
+	}
+
+	public void setIncludes(String[] includes) {
+		this.includes = includes;
+	}
+
+	public void setAlgorithm(String algorithm) {
+		this.algorithm = algorithm;
+	}
+
+	public void setStartToken(String startToken) {
+		this.startToken = startToken;
+	}
+
+	public void setEndToken(String endToken) {
+		this.endToken = endToken;
+	}
+
+	public void setAesSecretKey(String aesSecretKey) {
+		this.aesSecretKey = aesSecretKey;
+	}
+
+	public void setAesSecretSalt(String aesSecretSalt) {
+		this.aesSecretSalt = aesSecretSalt;
+	}
+
+	public void execute() throws MojoExecutionException, MojoFailureException {
         TextEncryptor encryptor = new AesEncryptor(algorithm, aesSecretKey, aesSecretSalt);
         encrypt(source, encryptor);
     }
