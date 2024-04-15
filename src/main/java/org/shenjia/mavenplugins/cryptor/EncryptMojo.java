@@ -32,54 +32,26 @@ import org.springframework.security.crypto.encrypt.TextEncryptor;
 @Mojo(name = "encrypt")
 public class EncryptMojo extends AbstractMojo {
 
-    @Parameter(defaultValue = "${project.basedir}/src/main/resources", readonly = true, required = true)
+    @Parameter(defaultValue = "${project.basedir}/src/main/resources", required = true)
     private File source;
 
-    @Parameter(defaultValue = "application.properties", readonly = true, required = true)
+    @Parameter(defaultValue = "application.properties", required = true)
     private String[] includes;
 
-    @Parameter(defaultValue = "PBKDF2WithHmacSHA256", readonly = true, required = true)
+    @Parameter(defaultValue = "PBKDF2WithHmacSHA256", required = true)
     private String algorithm;
 
-    @Parameter(defaultValue = "${encrypt(\"", readonly = true, required = true)
+    @Parameter(defaultValue = "${encrypt(\"", required = true)
     private String startToken;
 
-    @Parameter(defaultValue = "\")}", readonly = true, required = true)
+    @Parameter(defaultValue = "\")}", required = true)
     private String endToken;
 
-    @Parameter(readonly = true, required = true)
+    @Parameter(required = true)
     private String aesSecretKey;
 
-    @Parameter(readonly = true, required = true)
+    @Parameter(required = true)
     private String aesSecretSalt;
-
-    public void setSource(File source) {
-		this.source = source;
-	}
-
-	public void setIncludes(String[] includes) {
-		this.includes = includes;
-	}
-
-	public void setAlgorithm(String algorithm) {
-		this.algorithm = algorithm;
-	}
-
-	public void setStartToken(String startToken) {
-		this.startToken = startToken;
-	}
-
-	public void setEndToken(String endToken) {
-		this.endToken = endToken;
-	}
-
-	public void setAesSecretKey(String aesSecretKey) {
-		this.aesSecretKey = aesSecretKey;
-	}
-
-	public void setAesSecretSalt(String aesSecretSalt) {
-		this.aesSecretSalt = aesSecretSalt;
-	}
 
 	public void execute() throws MojoExecutionException, MojoFailureException {
         TextEncryptor encryptor = new AesEncryptor(algorithm, aesSecretKey, aesSecretSalt);
